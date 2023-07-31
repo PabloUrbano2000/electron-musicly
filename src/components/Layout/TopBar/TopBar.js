@@ -17,7 +17,6 @@ export const TopBar = () => {
   const avatar = userData.photoURL || defaultUser;
 
   const goBack = () => {
-    console.log("go bak");
     navigation(-1);
   };
 

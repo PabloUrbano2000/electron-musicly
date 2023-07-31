@@ -12,7 +12,6 @@ export const Artists = () => {
     (async () => {
       try {
         const response = await artistController.obtainAll();
-        console.log(response);
         setArtists(response);
       } catch (error) {
         console.log(error);

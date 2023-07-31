@@ -25,7 +25,6 @@ export const AddAlbumForm = ({ onClose }) => {
     (async () => {
       try {
         const response = await artistController.obtainAll();
-        console.log(response);
         const newData = map(response, (art) => ({
           key: art.id,
           value: art.id,
@@ -43,7 +42,6 @@ export const AddAlbumForm = ({ onClose }) => {
     validationSchema: validationSchema(),
     validateOnChange: false,
     onSubmit: async (values) => {
-      console.log(values);
       try {
         const { name, image, artist } = values;
         const response = await storageController.uploadFile(
@@ -64,7 +62,6 @@ export const AddAlbumForm = ({ onClose }) => {
 
   const onDrop = React.useCallback(async (acceptedFile) => {
     const file = acceptedFile[0];
-    console.log(file);
     setImage(URL.createObjectURL(file));
     formik.setFieldValue("image", file);
   }, []);

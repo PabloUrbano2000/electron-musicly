@@ -20,8 +20,6 @@ export const LoginForm = (props) => {
       } catch (error) {
         console.log(error);
       }
-      console.log("formulario enviado...");
-      console.log(values);
     },
   });
 

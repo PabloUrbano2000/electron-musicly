@@ -20,7 +20,6 @@ export const RegisterForm = (props) => {
     validationSchema: validationSchema(),
     validateOnChange: false,
     onSubmit: async (values) => {
-      console.log(values);
       try {
         await auth.register(values.email, values.password);
       } catch (error) {

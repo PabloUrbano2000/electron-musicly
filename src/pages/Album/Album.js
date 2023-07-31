@@ -29,7 +29,6 @@ export const Album = () => {
     (async () => {
       try {
         const response = await songController.obtainAllByAlbum(id);
-        console.log(response);
         setSongs(response);
       } catch (error) {
         console.log(error);

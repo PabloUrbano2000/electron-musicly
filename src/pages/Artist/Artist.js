@@ -43,7 +43,6 @@ export const Artist = () => {
           let data = [];
           for await (const item of albums) {
             const result = await songController.obtainAllByAlbum(item.id);
-            console.log(result);
             const dataTemp = map(result, (dataSong) => ({
               ...dataSong,
               image: item.image,
