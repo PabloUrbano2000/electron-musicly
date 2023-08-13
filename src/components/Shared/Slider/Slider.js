@@ -6,27 +6,58 @@ import { usePlayer } from "../../../hooks";
 
 import "./Slider.scss";
 
-const settings = {
-  dots: false,
-  infinite: true,
-  slidesToShow: 5,
-  swipeToSlide: true,
-  centerMode: true,
-  adaptiveHeight: true,
-};
-
-export const Slider = ({ data, basePath, song }) => {
+export const Slider = React.memo(({ data, basePath, song }) => {
   const { playSong } = usePlayer();
+  const [settings, setSettings] = React.useState({
+    dots: false,
+    infinite: true,
+    swipeToSlide: true,
+    slidesToShow: 5,
+    centerMode: true,
+    adaptiveHeight: true,
+  });
 
   const [size, setSize] = React.useState(0);
   const [loadCompleted, setLoadCompleted] = React.useState(false);
   const itemRef = React.useRef();
+
+  const adjustSlider = () => {
+    let slidesToShow = 5;
+    if (window !== "undefined" && window.innerWidth) {
+      if (window.innerWidth < 700) {
+        slidesToShow = 1;
+      } else if (window.innerWidth < 900) {
+        slidesToShow = 2;
+      } else if (window.innerWidth < 1000) {
+        slidesToShow = 3;
+      } else if (window.innerWidth < 1200) {
+        slidesToShow = 4;
+      }
+      setSettings({
+        ...settings,
+        slidesToShow,
+      });
+    }
+  };
 
   React.useEffect(() => {
     if (loadCompleted && itemRef.current) {
       setSize(itemRef.current.clientWidth);
     }
   }, [loadCompleted]);
+
+  // en un primer render
+  React.useEffect(() => {
+    if (loadCompleted && window) {
+      adjustSlider();
+    }
+  }, [loadCompleted]);
+
+  React.useEffect(() => {
+    window.addEventListener("resize", () => {
+      adjustSlider();
+    });
+  }, []);
 
   return (
     <Slick {...settings} className="slider">
@@ -67,4 +98,4 @@ export const Slider = ({ data, basePath, song }) => {
       })}
     </Slick>
   );
-};
+});

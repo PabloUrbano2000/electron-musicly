@@ -57,7 +57,7 @@ export const Player = () => {
         min={0.0}
         className="bar"
         width={"100%"}
-        size="tiny"
+        size="small"
         step={0.01}
         max={!song?.file ? 1 : totalSeconds}
         onMouseDown={handleSeekMouseDown}

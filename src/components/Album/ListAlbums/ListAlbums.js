@@ -4,7 +4,7 @@ import { map, size } from "lodash";
 import { Link } from "react-router-dom";
 import "./ListAlbums.scss";
 
-export const ListAlbums = ({ albums }) => {
+export const ListAlbums = React.memo(({ albums }) => {
   if (size(albums) === 0) {
     return (
       <Loader active inline="centered" size="large">
@@ -29,4 +29,4 @@ export const ListAlbums = ({ albums }) => {
       </Grid.Row>
     </Grid>
   );
-};
+});

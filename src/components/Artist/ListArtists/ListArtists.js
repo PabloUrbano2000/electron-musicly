@@ -4,7 +4,7 @@ import { map, size } from "lodash";
 import { Link } from "react-router-dom";
 import "./ListArtists.scss";
 
-export const ListArtists = ({ artists }) => {
+export const ListArtists = React.memo(({ artists }) => {
   if (size(artists) === 0) {
     return (
       <Loader active inline="centered" size="large">
@@ -29,4 +29,4 @@ export const ListArtists = ({ artists }) => {
       </Grid.Row>
     </Grid>
   );
-};
+});

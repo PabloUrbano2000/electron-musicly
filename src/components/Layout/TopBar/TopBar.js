@@ -28,7 +28,7 @@ export const TopBar = () => {
           <Image src={avatar} avatar />
           <span>{displayName}</span>
         </Link>
-        <Icon name="power" onClick={() => auth.logout()} />
+        <Icon onClick={() => auth.logout()} className="logout" />
       </div>
     </div>
   );
