@@ -33,12 +33,14 @@
       align-items: center;
       input {
         width: 150px;
+        accent-color: #3f6dfa;
       }
 
       i.icon {
         display: flex;
         align-items: center;
         margin-right: 10px !important;
+        cursor: pointer;
       }
     }
   }

@@ -17,7 +17,7 @@ export const Albums = () => {
 
   return (
     <div className="albums-page">
-      <h1>Albumes</h1>
+      <h1>Álbumes</h1>
       <ListAlbums albums={albums} />
     </div>
   );

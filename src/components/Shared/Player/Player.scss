@@ -2,7 +2,7 @@
 
 .player {
   text-align: center;
-
+  position: relative;
   i.icon {
     font-size: 30px;
     margin: 0;
@@ -12,11 +12,25 @@
       opacity: 0.6;
     }
   }
+  .ui.checkbox {
+    position: absolute !important;
+    top: 0;
+    right: 0;
+    & i {
+      color: $font-light !important;
+      cursor: pointer;
+      font-size: 20px;
+    }
+  }
+  & .bar {
+    width: 100%;
+    accent-color: #505050;
+  }
 
-  .ui.progress.tiny{
+  .ui.progress.tiny {
     margin: 0;
-    .progress{
-        display: none;
+    .progress {
+      display: none;
     }
   }
 }

@@ -5,7 +5,7 @@ import { usePlayer } from "../../../hooks";
 import "./Footer.scss";
 
 export const Footer = () => {
-  const { song, miniature, volume, setVolume } = usePlayer();
+  const { song, miniature, volume, setVolume, silence, muted } = usePlayer();
   return (
     <div className="footer">
       <div className="footer__left">
@@ -17,7 +17,9 @@ export const Footer = () => {
       </div>
       <div className="footer__right">
         <Input
-          label={<Icon name="volume up" />}
+          label={
+            <Icon name={`volume ${muted ? "off" : "up"}`} onClick={silence} />
+          }
           type="range"
           min={0}
           max={1}

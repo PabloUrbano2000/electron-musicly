@@ -21,7 +21,10 @@ export const NewArtistForm = (props) => {
     const file = acceptedFile[0];
     setImage(URL.createObjectURL(file));
     formik.setFieldValue("file", file);
-  },[]);
+    if (file?.name) {
+      formik.setFieldValue("name", file.name.split(".")[0]);
+    }
+  }, []);
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 

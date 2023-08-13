@@ -1,39 +1,68 @@
 import React from "react";
-import { Progress, Icon } from "semantic-ui-react";
+import { Icon, Checkbox, Input } from "semantic-ui-react";
 import ReactPlayer from "react-player";
 import { usePlayer } from "../../../hooks";
 import "./Player.scss";
 
 export const Player = () => {
-  const { song, playing, pause, resume, volume } = usePlayer();
-
-  const [totalSeconds, setTotalSeconds] = React.useState(0);
-  const [currentSeconds, setCurrentSeconds] = React.useState(0);
-
-  const onProgress = (data) => {
-    setTotalSeconds(data.loadedSeconds);
-    setCurrentSeconds(data.playedSeconds);
-  };
+  const {
+    song,
+    playing,
+    pause,
+    resume,
+    volume,
+    loop,
+    repeat,
+    playerRef,
+    totalSeconds,
+    currentSeconds,
+    handleSeekMouseUp,
+    handleSeekChange,
+    handleSeekMouseDown,
+    onProgress,
+    muted,
+  } = usePlayer();
 
   return (
     <div className="player">
       <Icon
         name={playing ? "pause circle outline" : "play circle outline"}
-        onClick={playing ? pause : resume}
+        onClick={() => {
+          if (song?.file) {
+            playing ? pause() : resume();
+          }
+        }}
       />
-      <Progress
-        progress="value"
-        value={currentSeconds}
-        total={totalSeconds}
-        size="tiny"
+      <Checkbox
+        label={
+          <Icon name={`${loop ? "repeat" : "shuffle"}`} onClick={repeat} />
+        }
+        onChange={(_, e) => repeat(e.checked)}
       />
       <ReactPlayer
+        ref={playerRef}
         url={song?.file}
         playing={playing}
         height={0}
         width={0}
+        loop={loop}
         volume={volume}
+        muted={muted}
+        progressInterval={totalSeconds}
         onProgress={onProgress}
+      />
+      <Input
+        type="range"
+        value={currentSeconds}
+        min={0.0}
+        className="bar"
+        width={"100%"}
+        size="tiny"
+        step={0.01}
+        max={!song?.file ? 1 : totalSeconds}
+        onMouseDown={handleSeekMouseDown}
+        onChange={handleSeekChange}
+        onMouseUp={handleSeekMouseUp}
       />
     </div>
   );

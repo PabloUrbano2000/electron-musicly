@@ -66,7 +66,7 @@ export const Home = () => {
         {artists && <Slider data={artists} basePath={"artists"} />}
       </div>
       <div className="home-page__slider">
-        <h2>Últimos albumes</h2>
+        <h2>Últimos álbumes</h2>
         {albums && <Slider data={albums} basePath={"albums"} />}
       </div>
       <div className="home-page__slider">

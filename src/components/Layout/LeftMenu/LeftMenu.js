@@ -63,7 +63,7 @@ export const LeftMenu = () => {
           <Menu.Item
             as={Link}
             to="/albums"
-            name="Albumes"
+            name="Álbumes"
             icon="window maximize outline"
             active={isCurrentPage("/albums")}
           />

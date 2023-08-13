@@ -63,7 +63,7 @@ export const Artist = () => {
     <div className="artist-page">
       <ArtistBanner image={artist.image} name={artist.name} />
       <div className="artist-page__slider">
-        <h2>Albumes</h2>
+        <h2>Álbumes</h2>
         <Slider data={albums} basePath={"albums"} />
       </div>
       <div className="artist-page__slider">
