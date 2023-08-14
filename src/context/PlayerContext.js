@@ -5,7 +5,6 @@ export const PlayerContext = React.createContext({});
 export function PlayerProvider(props) {
   const { children } = props;
   const [song, setSong] = React.useState(null);
-  const playerRef = React.useRef(null);
   const [seeking, setSeeking] = React.useState(false);
   const [miniature, setMiniature] = React.useState(null);
   const [muted, setMuted] = React.useState(false);
@@ -14,10 +13,7 @@ export function PlayerProvider(props) {
   const [loop, setLoop] = React.useState(false);
   const [totalSeconds, setTotalSeconds] = React.useState(0);
   const [currentSeconds, setCurrentSeconds] = React.useState(0);
-
-  const handleSeekChange = (e) => {
-    setCurrentSeconds(parseFloat(e.target.value));
-  };
+  const playerRef = React.useRef(null);
 
   const playSong = (songData, miniature) => {
     setSong(songData);
@@ -36,6 +32,10 @@ export function PlayerProvider(props) {
 
   const handleSeekMouseDown = () => {
     setSeeking(true);
+  };
+
+  const handleSeekChange = (e) => {
+    setCurrentSeconds(parseFloat(e.target.value));
   };
 
   const onProgress = (data) => {

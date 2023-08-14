@@ -25,6 +25,10 @@
   & .bar {
     width: 100%;
     accent-color: #505050;
+    & input {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
   }
 
   .ui.progress.tiny {
